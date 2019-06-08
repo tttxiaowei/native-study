@@ -1,3 +1,11 @@
+/**
+ * All rights Reserved, Designed By www.tttxiaowei.top
+ * @Title:  Array.js
+ * @Description:     Array对象
+ * @author: xiaowei
+ * @date:   2019/6/7
+ */
+
 { // 构造
     let arr1 = [1, 2, 3];
     let arr2 = new Array(1, 2, 3);

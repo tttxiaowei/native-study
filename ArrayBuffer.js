@@ -1,3 +1,11 @@
+/**
+ * All rights Reserved, Designed By www.tttxiaowei.top
+ * @Title:  ArrayBuffer.js
+ * @Description:     ArrayBuffer对象
+ * @author: xiaowei
+ * @date:   2019/6/7
+ */
+
 {   // 构造
     /* new ArrayBuffer(length)      如果 length 大于 Number.MAX_SAFE_INTEGER（>= 2 ** 53）或为负数，则抛出一个RangeError异常
      */

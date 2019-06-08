@@ -1,3 +1,11 @@
+/**
+ * All rights Reserved, Designed By www.tttxiaowei.top
+ * @Title:  Boolean.js
+ * @Description:     Boolean对象
+ * @author: xiaowei
+ * @date:   2019/6/7
+ */
+
 {   // 构造函数
     /* new Boolean([value])
      */

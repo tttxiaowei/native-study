@@ -1,10 +1,18 @@
+/**
+ * All rights Reserved, Designed By www.tttxiaowei.top
+ * @Title:  Error.js
+ * @Description:     Error对象
+ * @author: xiaowei
+ * @date:   2019/6/7
+ */
+
 {   // 构造函数
-    /*
-    new Error([message [, fileName [, lineNumber ]]]);
-    message: 可选。人类可阅读的错误描述信息。
-    fileName: 可选。被创建的Error对象的fileName属性值。默认是调用Error构造器代码所在的文件 的名字。      非标准
-    lineNumber: 可选。被创建的Error对象的lineNumber属性值。默认是调用Error构造器代码所在的文件的行号。   非标准
-    */
+    /**
+     * new Error([message [, fileName [, lineNumber ]]]);
+     * message: 可选。人类可阅读的错误描述信息。
+     * fileName: 可选。被创建的Error对象的fileName属性值。默认是调用Error构造器代码所在的文件 的名字。      非标准
+     * lineNumber: 可选。被创建的Error对象的lineNumber属性值。默认是调用Error构造器代码所在的文件的行号。   非标准
+     */
     let e1 = new Error('aaa', 'asdas', 1232);     // 只有message和stack属性，fileName和lineNumber没有效果
     let e2 = Error('aaa');                        // 用不用new都会生成Error对象
     let end = 1;

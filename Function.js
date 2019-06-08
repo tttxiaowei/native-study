@@ -1,3 +1,11 @@
+/**
+ * All rights Reserved, Designed By www.tttxiaowei.top
+ * @Title:  Function.js
+ * @Description:     Function对象
+ * @author: xiaowei
+ * @date:   2019/6/7
+ */
+
 {   // 构造函数
     /*
     new Function ([arg1[, arg2[, ...argN]],] functionBody)
