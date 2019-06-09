@@ -257,52 +257,63 @@
  * @return {all}    深拷贝后得到的新对象
  */
 function deepCopy(val) {
-    let returnType = ['[object String]', '[object Number]', '[object Boolean]', '[object Null]', '[object Undefined]', '[object Symbol]', '[object Error]', '[object RegExp]', '[object Function]', '[object GeneratorFunction]', '[object Promise]'];     // 直接返回的类型
     let type = Object.prototype.toString.call(val);
-    if (returnType.indexOf(type) > -1) {     // 基本类型或不处理的直接返回
-        return val;
-    }
-    if (type === '[object Date]') {    // 处理Date
-        return new Date(val);
-    }
-    if (type === '[object ArrayBuffer]') {    // 处理ArrayBuffer
-        return val.slice(0);
-    }
-    if (type === '[object DataView]') {    // 处理DataView
-        return new DataView(val.buffer.slice(0), val.byteOffset, val.byteLength);
-    }
-    let numberArray = ['[object Float32Array]', '[object Float64Array]', '[object Uint8Array]', '[object Uint8Clamped​Array]', '[object Uint16Array]', '[object Uint32Array]', '[object Int8Array]', '[object Int16Array]', '[object Int32Array]',];
-    if (numberArray.indexOf(type) > -1) {    // 处理****Array
-        let g = global ? global : window;
-        return g[type.slice(8, -1)]['from'](val);
-    }
-    if (type === '[object Array]') {    // 处理Array
-        return val.map(v => deepCopy(v));
-    }
-    if (type.indexOf('Set') > -1) {      // 处理Set
-        let set = type === '[object WeakSet]' ? new WeakSet() : new Set();
-        for (let v of val.values()) {
-            set.add(deepCopy(v));
-        }
-        return set;
-    }
-    if (type.indexOf('Map') > -1) {      // 处理Map
-        let map = type === '[object WeakMap]' ? new WeakMap() : new Map();
-        for (let k of val.keys()) {
-            map.set(k, deepCopy(val.get(k)));
-        }
-        return map;
-    }
-    if (type === '[object Object]') {   // 处理纯对象
-        let obj = {};
-        Reflect.ownKeys(val).forEach(k => {
-            let des = Object.getOwnPropertyDescriptor(val, k);
-            if (!(des.get || des.set)) {  // 除非设置了getter、setter，否则就要递归。对getter、setter无能为力，因为getter、setter函数内很可能用了局部变量
-                des.value = deepCopy(des.value);
+    switch (type) {
+        case '[object String]':
+        case '[object Number]':
+        case '[object Boolean]':
+        case '[object Null]':
+        case '[object Undefined]':
+        case '[object Symbol]':
+        case '[object Error]':
+        case '[object RegExp]':
+        case '[object Function]':   // 函数无法深拷贝，可能涉及闭包、局部变量
+        case '[object GeneratorFunction]':
+        case '[object Promise]':    // Promise无法深拷贝，可能涉及闭包、局部变量
+            return val;                         // 基本类型或不处理的直接返回
+        case  '[object Date]':
+            return new Date(val);               // 处理Date
+        case  '[object ArrayBuffer]':
+            return val.slice(0);                // 处理ArrayBuffer
+        case  '[object DataView]':
+            return new DataView(val.buffer.slice(0), val.byteOffset, val.byteLength);   // 处理DataView
+        case '[object Float32Array]':
+        case '[object Float64Array]':
+        case '[object Uint8Array]':
+        case '[object Uint8Clamped​Array]':
+        case '[object Uint16Array]':
+        case '[object Uint32Array]':
+        case '[object Int8Array]':
+        case '[object Int16Array]':
+        case '[object Int32Array]':
+            let g = global ? global : window;
+            return g[type.slice(8, -1)]['from'](val);                                   // 处理****Array
+        case '[object Array]':
+            return val.map(v => deepCopy(v));                                           // 处理Array
+        case '[object Set]':
+        case '[object WeakSet]':
+            let set = type === '[object WeakSet]' ? new WeakSet() : new Set();          // 处理Set
+            for (let v of val.values()) {
+                set.add(deepCopy(v));
             }
-            Object.defineProperty(obj, k, des);
-        });
-        return obj;
+            return set;
+        case '[object Map]':
+        case '[object WeakMap]':
+            let map = type === '[object WeakMap]' ? new WeakMap() : new Map();          // 处理Map
+            for (let k of val.keys()) {
+                map.set(k, deepCopy(val.get(k)));
+            }
+            return map;
+        case '[object Object]':                                                         // 处理纯对象
+            let obj = {};
+            Reflect.ownKeys(val).forEach(k => {
+                let des = Object.getOwnPropertyDescriptor(val, k);
+                if (!(des.get || des.set)) {    // 除非设置了getter、setter，否则就要递归。对getter、setter无能为力，因为getter、setter函数内很可能用了局部变量
+                    des.value = deepCopy(des.value);
+                }
+                Object.defineProperty(obj, k, des);
+            });
+            return obj;
     }
     throw new Error('深拷贝匹配逻辑不完善');        // 如果执行到这里，则说明前面匹配逻辑不完善
 }
