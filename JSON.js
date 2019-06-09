@@ -253,8 +253,8 @@
 
 /**
  * @Description:  深拷贝函数（不能算完全的深拷贝，暂时没想如何到拷贝函数、对象中有getter和setter的属性）
- * @param {paramType} param
- * @return {returnType} element
+ * @param {all} val 要拷贝的对象
+ * @return {all}    深拷贝后得到的新对象
  */
 function deepCopy(val) {
     let returnType = ['[object String]', '[object Number]', '[object Boolean]', '[object Null]', '[object Undefined]', '[object Symbol]', '[object Error]', '[object RegExp]', '[object Function]', '[object GeneratorFunction]', '[object Promise]'];     // 直接返回的类型
@@ -304,4 +304,5 @@ function deepCopy(val) {
         });
         return obj;
     }
+    throw new Error('深拷贝匹配逻辑不完善');        // 如果执行到这里，则说明前面匹配逻辑不完善
 }
