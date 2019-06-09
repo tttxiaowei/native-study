@@ -1,7 +1,7 @@
 /**
  * All rights Reserved, Designed By www.tttxiaowei.top
  * @Title:  Infinity .js
- * @Description:    Infinity 属性
+ * @Description:    Infinity
  * @author: xiaowei
  * @date:   2019/6/7
  */
