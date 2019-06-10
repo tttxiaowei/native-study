@@ -253,8 +253,8 @@
 
 /**
  * @Description:  深拷贝函数（不能算完全的深拷贝，暂时没想如何到拷贝函数、对象中有getter和setter的属性）
- * @param {all} val 要拷贝的对象
- * @return {all}    深拷贝后得到的新对象
+ * @param {all} val 需要拷贝的值
+ * @return {all}    深拷贝后得到的新值
  */
 function deepCopy(val) {
     let type = Object.prototype.toString.call(val);
@@ -306,9 +306,9 @@ function deepCopy(val) {
             return map;
         case '[object Object]':                                                         // 处理纯对象
             let obj = {};
-            Reflect.ownKeys(val).forEach(k => {
+            Reflect.ownKeys(val).forEach(k => {     // 获取所有属性
                 let des = Object.getOwnPropertyDescriptor(val, k);
-                if (!(des.get || des.set)) {    // 除非设置了getter、setter，否则就要递归。对getter、setter无能为力，因为getter、setter函数内很可能用了局部变量
+                if (!(des.get || des.set)) {        // 除非设置了getter、setter，否则就要递归。对getter、setter无能为力，因为getter、setter函数内很可能用了闭包、局部变量
                     des.value = deepCopy(des.value);
                 }
                 Object.defineProperty(obj, k, des);
