@@ -267,6 +267,7 @@ function deepCopy(val) {
         case '[object Symbol]':
         case '[object Error]':
         case '[object RegExp]':
+        case '[object Math]':
         case '[object Function]':   // 函数无法深拷贝，可能涉及闭包、局部变量
         case '[object GeneratorFunction]':
         case '[object Promise]':    // Promise无法深拷贝，可能涉及闭包、局部变量
