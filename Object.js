@@ -354,13 +354,95 @@
 }
 {   // Object.isExtensible() 方法判断一个对象是否是可扩展的（是否可以在它上面添加新的属性）。
     // Object.preventExtensions，Object.seal 或 Object.freeze 方法都可以标记一个对象为不可扩展（non-extensible）。
+    let o1 = {a: 1};
+    let o2 = {b: 1};
+    let o3 = {c: 1};
+    Object.preventExtensions(o1);
+    Object.seal(o2);
+    Object.freeze(o3);
+    let b1 = Object.isExtensible(o1);   // false
+    let b2 = Object.isExtensible(o2);   // false
+    let b3 = Object.isExtensible(o3);   // false
 }
 {   // Object.isSealed(obj) 判断一个对象是否被密封。
     // 密封对象是指那些不可扩展的，且所有自身属性都不可配置且因此不可删除（但不一定是不可写）的对象。
+    let o1 = {a: 1};
+    let o2 = {b: 1};
+    let o3 = {c: 1};
+    Object.preventExtensions(o1);
+    Object.seal(o2);
+    Object.freeze(o3);
+    let b1 = Object.isSealed(o1);   // false
+    let b2 = Object.isSealed(o2);   // true
+    let b3 = Object.isSealed(o3);   // true
 }
 {   // Object.isFrozen()方法判断一个对象是否被冻结。
     // 一个对象是冻结的是指它不可扩展，所有属性都是不可配置的，且所有数据属性（即没有getter或setter组件的访问器的属性）都是不可写的。
+    let o1 = {a: 1};
+    let o2 = {b: 1};
+    let o3 = {c: 1};
+    Object.preventExtensions(o1);
+    Object.seal(o2);
+    Object.freeze(o3);
+    let b1 = Object.isFrozen(o1);   // false
+    let b2 = Object.isFrozen(o2);   // false
+    let b3 = Object.isFrozen(o3);   // true
 }
-{   //
-    let end = 12;
+{   // obj.hasOwnProperty(prop) 会返回一个布尔值，指示对象自身属性中是否具有指定的属性
+    // prop: 要检测的属性  字符串 名称或者 Symbol。
+    // 所有继承了 Object 的对象都会继承到 hasOwnProperty 方法。这个方法可以用来检测一个对象是否含有特定的自身属性；和 in 运算符不同，该方法会忽略掉那些从原型链上继承到的属性。
+    let s1 = Symbol(12);
+    let o1 = {a: 1, [s1]: 789};
+    o1.hasOwnProperty('a'); // true
+    o1.hasOwnProperty(s1); // true
+}
+{   // prototypeObj.isPrototypeOf(object) 测试一个对象是否存在于另一个对象的原型链上。
+    // isPrototypeOf() 与 instanceof 运算符不同。在表达式 "object instanceof AFunction"中，object 的原型链是针对 AFunction.prototype 进行检查的，而不是针对 AFunction 本身。
+    let o1 = {a: 1};
+    let o2 = Object.create(o1);
+    let b1 = o1.isPrototypeOf(o2); // true
+    let b2 = Object.prototype.isPrototypeOf(o2); // true
+}
+{   // obj.propertyIsEnumerable(prop) 返回一个布尔值，表示指定的属性是否可枚举。
+    let o1 = {};
+    Object.defineProperties(o1, {
+        a: {
+            value: 12
+        },
+        b: {
+            value: 232,
+            enumerable: true
+        }
+    });
+    let b1 = o1.propertyIsEnumerable('a');  // false
+    let b2 = o1.propertyIsEnumerable('b');  // true
+}
+
+{   // obj.toString() 返回一个表示该对象的字符串
+    // 每个对象都有一个toString()方法，当该对象被表示为一个文本值时，或者一个对象以预期的字符串方式引用时自动调用。
+    // 默认情况下，toString()方法被每个Object对象继承。如果此方法在自定义对象中未被覆盖，toString() 返回 "[object type]"，其中type是对象的类型
+    let o1 = {a: 1};
+    let s1 = o1.toString();  // [object Object]
+}
+
+{   // obj.valueOf() 返回指定对象的原始值。
+    // JavaScript调用valueOf方法将对象转换为原始值。你很少需要自己调用valueOf方法；当遇到要预期的原始值的对象时，JavaScript会自动调用它。
+    // 默认情况下，valueOf方法由Object后面的每个对象继承。 每个内置的核心对象都会覆盖此方法以返回适当的值。如果对象没有原始值，则valueOf将返回对象本身。
+    // 不同类型对象的valueOf()方法的返回值:
+    // Array	返回数组对象本身。
+    // Boolean	布尔值。
+    // Date	存储的时间是从 1970 年 1 月 1 日午夜开始计的毫秒数 UTC。
+    // Function	函数本身。
+    // Number	数字值。
+    // Object	对象本身。这是默认情况。
+    // String	字符串值。
+    // Math 和 Error 对象没有 valueOf 方法。
+    let s1 = ({a: 1}).valueOf();            // {"a": 1}
+    let s2 = ([2, 45]).valueOf();           // [2, 45]
+    let s3 = (new Boolean(11)).valueOf();   // true
+    let s4 = (new Date()).valueOf();        // 1560526779389
+    let s5 = (function () {
+    }).valueOf();                           // function () {}
+    let s6 = (new Number(111)).valueOf();   // 111
+    let s7 = (new String('asd')).valueOf(); // 'asd'
 }
