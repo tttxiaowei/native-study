@@ -266,12 +266,13 @@ function deepCopy(val) {
         case '[object Undefined]':
         case '[object Symbol]':
         case '[object Error]':
-        case '[object RegExp]':
         case '[object Math]':
         case '[object Function]':   // 函数无法深拷贝，可能涉及闭包、局部变量
         case '[object GeneratorFunction]':
         case '[object Promise]':    // Promise无法深拷贝，可能涉及闭包、局部变量
             return val;                         // 基本类型或不处理的直接返回
+        case '[object RegExp]':
+            return new RegExp(val);             // 处理RegExp
         case  '[object Date]':
             return new Date(val);               // 处理Date
         case  '[object ArrayBuffer]':
