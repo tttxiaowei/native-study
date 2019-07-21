@@ -115,6 +115,32 @@ flags:
      *  length: 3
      */
 }
+{   // RegExp.prototype.test  用来查看正则表达式与指定的字符串是否匹配。返回 true 或 false。
+    // 类似于 String.prototype.search() 方法，差别在于test返回一个布尔值，而 search 返回索引（如果找到）或者-1（如果没找到）
+    let reg1 = /\d/;
+    let reg2 = /\d/g;
+    let str = '78a8sd'
+    let str1 = 'aaaaa8'
+
+    let b11 = reg1.test(str)   // true      reg1.lastIndex:0
+    let b12 = reg1.test(str)   // true      reg1.lastIndex:0
+    let b13 = reg1.test(str)   // true      reg1.lastIndex:0
+    let b14 = reg1.test(str)   // true      reg1.lastIndex:0
+    let b15 = reg1.test(str)   // true      reg1.lastIndex:0
+
+    let b21 = reg2.test(str)   // true      reg2.lastIndex:1
+    let b22 = reg2.test(str)   // true      reg2.lastIndex:2
+    let b23 = reg2.test(str)   // true      reg2.lastIndex:4
+    let b24 = reg2.test(str)   // false     reg1.lastIndex:0   g修饰符使test每次从新lastIndex开始匹配，所以这里是false
+    let b25 = reg2.test(str)   // true      reg1.lastIndex:1
+
+    reg2.lastIndex = 0;
+    let b31 = reg2.test(str)   // true      reg2.lastIndex:1
+    let b32 = reg2.test(str)   // true      reg2.lastIndex:2
+    let b33 = reg2.test(str1)  // true      reg2.lastIndex:6
+    let b34 = reg2.test(str)   // false     reg1.lastIndex:0    因为换了一个字符串str1，导致reg2的lasIndex变成了5，所以str的位置4上的数字没有被匹配到
+    let b35 = reg2.test(str)   // true      reg1.lastIndex:1
+}
 
 {   //  RegExp.prototype.toString 返回一个表示该正则表达式的字符串。
     /a\s\\.sd/mg.toString();            // "/a\s\\.sd/gm"

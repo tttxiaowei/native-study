@@ -253,8 +253,8 @@
 
 /**
  * @Description:  深拷贝函数（不能算完全的深拷贝，暂时没想如何到拷贝函数、对象中有getter和setter的属性）
- * @param {all} val 需要拷贝的值
- * @return {all}    深拷贝后得到的新值
+ * @param  {*} val 需要拷贝的值
+ * @return {*}    深拷贝后得到的新值
  */
 function deepCopy(val) {
     let type = Object.prototype.toString.call(val);
