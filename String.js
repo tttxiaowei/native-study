@@ -66,3 +66,89 @@
     s1.length           //  2
 }
 
+{   // String.fromCharCode()    返回由指定的UTF-16代码单元序列创建的字符串。
+    // String.fromCharCode(num1, ..., numN)     num1, ..., numN:一系列UTF-16代码单元的数字。 范围介于0到65535（0xFFFF）之间。 大于0xFFFF的数字将被截断。 不进行有效性检查。
+    String.fromCharCode(65, 66, 67)  // "ABC"
+    String.fromCharCode(0x2014)       // "—"
+    String.fromCharCode(0x12014)      // "—"; 第一位被截断抛弃
+}
+
+{   // String.fromCodePoint()    返回由指定的UTF-16代码单元序列创建的字符串。
+    // String.fromCodePoint(num1, ..., numN)     num1, ..., numN:一串 Unicode 编码位置，即“代码点”。如果传入无效的 Unicode 编码，将会抛出一个RangeError
+    String.fromCodePoint(65, 66, 67)  // "ABC"
+    String.fromCodePoint(0x2014)       // "—"
+    String.fromCodePoint(0x12014)      // '𒀔'
+    // String.fromCodePoint('aa')                // RangeError: Invalid code point NaN
+}
+
+{   // String.prototype.charAt()    从一个字符串中返回指定的字符。
+    // str.charAt(index)    字符串中的字符从左向右索引，第一个字符的索引值为 0，最后一个字符的索引值为 stringName.length - 1。 如果指定的 index 值超出了该范围，则返回一个空字符串。
+    let s1 = String.fromCodePoint(0x12014)
+    s1.length       // 2
+    s1.charAt(-1)   // ''
+    s1.charAt(0)    // ?
+    s1.charAt(1)    // ?
+    s1.charAt(2)    // ''
+}
+
+{   // String.prototype.charCodeAt()    返回0到65535之间的整数
+    // str.charCodeAt(index)    如果指定的 index 小于 0 或不小于字符串的长度，则 charCodeAt 返回 NaN
+    /**
+     * Unicode 编码单元（code points）的范围从 0 到 1,114,111（0x10FFFF）。开头的 128 个 Unicode 编码单元和 ASCII 字符编码一样
+     * 注意，charCodeAt 总是返回一个小于 65,536 的值。这是因为高位编码单元（higher code point）使用一对（低位编码 lower valued）代理伪字符（"surrogate" pseudo-characters）来表示，从而构成一个真正的字符。
+     * 因此，为了查看或复制（reproduce）65536 及以上编码字符的完整字符，需要在获取 charCodeAt(i) 的值的同时获取 charCodeAt(i+1) 的值（如同查看/reproducing 拥有两个字符的字符串一样），或者改为获取 codePointAt(i) 的值。
+     */
+    let s1 = String.fromCodePoint(0x12014)
+    s1.charCodeAt(-1)   // NaN
+    s1.charCodeAt(0)    // 55304    0xD808
+    s1.charCodeAt(1)    // 56340    0xDC14
+    s1.charCodeAt(2)    // NaN
+}
+
+{   // String.prototype.codePointAt()    返回 一个 Unicode 编码点值的非负整数。
+    // str.codePointAt(index)   如果在索引处没找到元素则返回 undefined
+    let s1 = String.fromCodePoint(0x12014)
+    s1.codePointAt(-1)   // undefined
+    s1.codePointAt(0)    // 73748    0x12014
+    s1.codePointAt(1)    // 56340    0xDC14
+    s1.codePointAt(2)    // undefined
+}
+
+{   // String.prototype.concat()    将一个或多个字符串与原字符串连接合并，形成一个新的字符串并返回。   强烈建议使用 赋值操作符（+, +=）代替 concat 方法
+    // str.concat(string2, string3[, ..., stringN])
+    'a'.concat('b', 'c')    // 'abc'
+}
+
+{   // String.prototype.endsWith()    判断当前字符串是否是以另外一个给定的子字符串“结尾”的，根据判断结果返回 true 或 false。
+    // str.endsWith(searchString[, length])     length: 可选。作为 str 的长度。默认值为 str.length。
+    let s1 = 'hello world'
+    s1.endsWith('world')    // true
+    s1.endsWith('World')    // false  大小写敏感
+
+    s1.endsWith('hello', 5)    // true  只搜索了前5个字符
+    s1.endsWith('hello', 4)    // false
+}
+
+{   // String.prototype.includes()    用于判断一个字符串是否包含在另一个字符串中，根据情况返回 true 或 false。
+    // str.includes(searchString[, position])   position： 可选。从当前字符串的哪个索引位置开始搜寻子字符串，默认值为0。
+    let s1 = 'hello world'
+    s1.includes('hello')    // true
+    s1.includes('hello', 1)    // false
+}
+
+{   // String.prototype.indexOf()   返回调用  String 对象中第一次出现的指定值的索引，开始在 fromIndex进行搜索。如果未找到该值，则返回-1。
+    //str.indexOf(searchValue[, fromIndex])   表示调用该方法的字符串中开始查找的位置。可以是任意整数。默认值为 0。如果 fromIndex < 0 则查找整个字符串（如同传进了 0）。如果 fromIndex >= str.length，则该方法返回 -1
+    let s1 = 'hello world'
+    s1.indexOf('hello')    // 0
+    s1.indexOf('hello', 1)    // -1
+    let end = 121
+}
+
+{   // String.prototype.lastIndexOf()   返回指定值在调用该方法的字符串中最后出现的位置，如果没找到则返回 -1。
+    //str.lastIndexOf(searchValue[, fromIndex])   fromIndex: 从调用该方法字符串的此位置处开始查找。可以是任意整数。默认值为 str.length。如果为负值，则被看作 0。如果 fromIndex > str.length，则 fromIndex 被看作 str.length。
+    let s1 = 'hello world'
+    s1.lastIndexOf('world', 5)  // -1   从索引5往左搜索，已经找不到world的开头w了
+    s1.lastIndexOf('world', 6)  // 6
+    s1.lastIndexOf('world', 7)  // 6
+    let end = 121
+}
