@@ -500,7 +500,7 @@
     }
 
     {   // 给新的变量命名并提供默认值
-        var {a: aa = 10, b: bb = 5} = {a: 3};
+        let {a: aa = 10, b: bb = 5} = {a: 3};
     }
 
     {   // 函数参数默认值
@@ -592,7 +592,7 @@
 
     {   // 解构对象时会查找原型链（如果属性不在对象自身，将从原型链中查找
         // 声明对象 和 自身 self 属性
-        var obj = {self: '123'};
+        let obj = {self: '123'};
         // 在原型链中定义一个属性 prot
         obj.__proto__.prot = '456';
         // test
@@ -723,6 +723,127 @@
 }
 
 
-{
+{   // 属性名称必须是字符串或符号 Symbol。这意味着非字符串对象不能用来作为一个对象属性的键。任何非字符串对象，包括 Number，都会通过 toString 方法，被转换成一个字符串。
+    let object1 = {};
+    object1['1'] = 'value';
+    console.log(object1[1]);     // value   1被转为'1'
 
+    let foo = {unique_prop: 1}, 
+        bar = {unique_prop: 2},
+        object2 = {};
+    object2[foo] = 'value';      // foo被转化为字符串"[object Object]"
+    console.log(object2[bar]);   // value    因为bar也被转化为"[object Object]"
+}
+
+
+{   // 展开语法(Spread syntax), 可以在函数调用/数组构造时, 将数组表达式或者string在语法层面展开；
+    // 还可以在构造字面量对象时, 将对象表达式按key-value的方式展开
+    let o1 = {a: 1}
+    let a1 = [4, 543, 3, 44]
+    let o2 = {...o1}            // 浅拷贝，相当于Object.assign，但是Object.assign会触发 setters，而展开语法则不会
+    let a2 = [...a1]        
+    
+    let f1 = function (...rest) {        
+        console.log(rest)
+    }
+    f1(...a1) 
+    // f1(...o1)        // TypeError: Found non-callable @@iterator 在数组或函数参数中使用展开语法时, 该语法只能用于 可迭代对象
+}
+
+{   // async function 关键字用来定义异步函数
+    // await  操作符用于等待一个Promise 对象。它只能在异步函数 async function 中使用。
+    /**
+        await 表达式会暂停当前 async function 的执行，等待 Promise 处理完成。若 Promise 正常处理(fulfilled)，其回调的resolve函数参数作为 await 表达式的值，继续执行 async function。
+        若 Promise 处理异常(rejected)，await 表达式会把 Promise 的异常原因抛出。
+        另外，如果 await 操作符后的表达式的值不是一个 Promise，则返回该值本身。
+     */
+    let p1 = function() {
+        return new Promise(function(resolve, reject) {
+            setTimeout(()=>{
+                reject(111111)
+            }, 200)
+        }).then(res => {
+            return 22222
+        }).catch(e => {         // 如果没有catch，错误会在await处抛出
+            return 44444
+        })
+    }
+
+    let f1 = async function() {
+        let a1 = await p1()     // 如果p1 resolve，则a1等于22222； 如果p1 reject,则a1等于44444
+        console.log(a1)
+    }
+    f1()
+}
+
+{   
+    class C1 {          // class声明的类也是局部作用域
+        a  = 1
+        constructor() {
+        }
+    }     
+    let C2 = class {
+    }
+
+    function F1() {
+    }
+    F1.prototype.a = 1
+
+    let o1 = new C1()
+    let o2 = new F1()
+    let end
+}
+
+{   /**
+     delete操作符
+        1. 与通常的看法不同，delete操作符与直接释放内存无关。内存管理 通过断开引用来间接完成的
+        2. 对于所有情况都是true，除非属性是一个自己不可配置的属性，在这种情况下，非严格模式返回 false, 在严格模式下，会抛出Global_objects/SyntaxError
+        3. 如果你试图删除的属性不存在，那么delete将不会起任何作用，但仍会返回true
+        4. delete操作只会在自身的属性上起作用,不会删除原型链上的属性
+        5. 任何使用 var 声明的属性不能从全局作用域或函数的作用域中删除，使用了 var，它会标记为不可配置。同样 let 或 const 也是不可配置的。
+        6. 任何用let或const声明的属性不能够从它被声明的作用域中删除
+        7. 不能删除任何在全局作用域中的函数（无论这个函数是来自于函数声明或函数表达式）
+        8. 不可设置的(Non-configurable)属性不能被移除。这意味着像Math, Array, Object内置对象的属性以及使用Object.defineProperty()方法设置为不可设置的属性不能被删除。
+    */
+    (function(){
+        var v1 = 1111
+        let v2 = 222
+        const v3 = 333
+        v4 = 888
+        function f1() {}
+        let d1 = delete v1
+        let d2 = delete v2
+        let d3 = delete v3      // d1 d2 d3都是false，删除失败
+        let d4 = delete v4      // d4为true, 删除成功，因为没有用var let const
+    })()
+}
+
+{   /**
+    in 操作符   prop in object
+        1. prop  一个字符串类型或者 symbol 类型的属性名或者数组索引（非symbol类型将会强制转为字符串）
+        2. objectName 检查它（或其原型链）是否包含具有指定名称的属性的对象
+        3. in右操作数必须是一个对象值，否则会报错
+        4. 对象中，对delete的属性使用in返回false，对赋值为undefined的属性使用in返回true
+    */
+
+    let a = 'aaa'
+    let o1 = {aaa: 777}
+    let r1 = a in o1
+    // a in 'sadasd'       // TypeError: Cannot use 'in' operator to search for 'aaa' in sadasd
+
+    let end = 3
+}
+
+{   // instanceof 运算符    object instanceof constructor
+    // instanceof 运算符用来检测 constructor.prototype 是否存在于参数 object 的原型链上。
+    /**
+     * 在浏览器中，我们的脚本可能需要在多个窗口之间进行交互。多个窗口意味着多个全局环境，不同的全局环境拥有不同的全局对象，从而拥有不同的内置类型构造函数。这可能会引发一些问题。
+     * 比如，表达式[] instanceof window.frames[0].Array 会返回 false，因为 Array.prototype !== window.frames[0].Array.prototype，并且数组从前者继承。
+     * 
+     *  */  
+     
+}
+
+{
+    
 }
