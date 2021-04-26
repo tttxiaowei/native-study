@@ -256,7 +256,7 @@
  * @param  {*} val 需要拷贝的值
  * @return {*}    深拷贝后得到的新值
  */
-function deepCopy(val) {
+function deepCopy(val, hash = new WeakMap()) {
     let type = Object.prototype.toString.call(val);
     switch (type) {
         case '[object String]':
@@ -265,12 +265,7 @@ function deepCopy(val) {
         case '[object Null]':
         case '[object Undefined]':
         case '[object Symbol]':
-        case '[object Error]':
-        case '[object Math]':
-        case '[object Function]':   // 函数无法深拷贝，可能涉及闭包、局部变量
-        case '[object GeneratorFunction]':
-        case '[object Promise]':    // Promise无法深拷贝，可能涉及闭包、局部变量
-            return val;                         // 基本类型或不处理的直接返回
+            return val;                         // 基本类型直接返回
         case '[object RegExp]':
             return new RegExp(val);             // 处理RegExp
         case  '[object Date]':
@@ -291,7 +286,7 @@ function deepCopy(val) {
             let g = global ? global : window;
             return g[type.slice(8, -1)]['from'](val);                                   // 处理****Array
         case '[object Array]':
-            return val.map(v => deepCopy(v));                                           // 处理Array
+            return val.map(v => deepCopy(v, hash));                                           // 处理Array
         case '[object Set]':
         case '[object WeakSet]':
             let set = type === '[object WeakSet]' ? new WeakSet() : new Set();          // 处理Set
@@ -310,12 +305,24 @@ function deepCopy(val) {
             let obj = {};
             Reflect.ownKeys(val).forEach(k => {     // 获取所有属性
                 let des = Object.getOwnPropertyDescriptor(val, k);
-                if (!(des.get || des.set)) {        // 除非设置了getter、setter，否则就要递归。对getter、setter无能为力，因为getter、setter函数内很可能用了闭包、局部变量
-                    des.value = deepCopy(des.value);
+                if (des.get || des.set) {        // 对于get、set，获取当前get的值
+                    des.value = des.get ? des.get() : null;
+                    delete des.get;
+                    delete des.set;
+                } else {
+                    des.value = deepCopy(des.value);  // 不是get、set就继续深拷贝
                 }
                 Object.defineProperty(obj, k, des);
             });
             return obj;
+        case '[object Function]':   // 不拷贝函数，可能涉及闭包, 可能影响原对象
+        case '[object GeneratorFunction]':
+        case '[object Promise]':    // 不拷贝Promise，可能涉及闭包, 可能影响原对象
+        case '[object Error]':      // 拷贝Error无意义
+        case '[object Math]':       // 拷贝Math无意义
+            return
+        default:
+            return
     }
     throw new Error('深拷贝匹配逻辑不完善');        // 如果执行到这里，则说明前面匹配逻辑不完善
 }
