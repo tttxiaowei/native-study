@@ -19,8 +19,9 @@
         // console.log(arr[i], new Boolean(arr[i]), Boolean(new Boolean(arr[i])));     // new Boolean得到一个值为false的Boolean对象
     }
     for (let i = 0; i < arr.length; i++) {
-        // console.log(arr[i], Boolean(arr[i]));   // Boolean函数直接得到原始值
+        console.log(arr[i], Boolean(arr[i]));   // Boolean函数直接得到原始值
     }
+    let end
 }
 {   // Boolean.prototype.toString   // 返回字符串'true'、'false'
     /* bool.toString()
@@ -29,6 +30,7 @@
     if (b1.toString()) {   // toString返回字符串'false'，所以是true
         // console.log(222)
     }
+    let end
 }
 {   // Boolean.prototype.valueOf   // 返回一个Boolean对象或Boolean字面量的原始值
     /* bool.valueOf()
@@ -38,4 +40,5 @@
     if (b1.valueOf()) {   // valueOf返回原始值false
         // console.log(333)
     }
+    let end
 }

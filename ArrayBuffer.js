@@ -14,6 +14,7 @@
     let view = new Int32Array(buffer);
     ArrayBuffer[Symbol.species];            // 返回ArrayBuffer构造函数
     ArrayBuffer.prototype.constructor === ArrayBuffer[Symbol.species];   // true
+    let end
 }
 {   // ArrayBuffer.isView       arg是一个ArrayBuffer的视图就返回true，否则返回false.
     /* ArrayBuffer.isView(arg)
@@ -28,6 +29,7 @@
     ArrayBuffer.isView(new Uint8Array());    // true
     ArrayBuffer.isView(new Float32Array());  // true
     ArrayBuffer.isView(new Int8Array(10).subarray(0, 3)); // true
+    let end
 }
 {   // ArrayBuffer.prototype.slice
     /* arraybuffer.slice(begin[, end]
@@ -35,4 +37,5 @@
      */
     let buf1 = new ArrayBuffer(8);
     let buf2 = buf1.slice(0);
+    let end
 }

@@ -14,6 +14,7 @@
     arr1[2] == arr1['02'];      // false ，因为索引会被js解释器通过调用toString隐式的转换为字符串，但a1没有02这个属性，所以a1['02']的值为undefined
     arr1['02'] = 222;         // 数组长度length不变！！！实际效果是为a1添加了一个02的属性
     arr1['33'] = 44;          // 数组长度改变！！！与上面相比，同样是字符串，这个却添加成功了，why？？？
+    let end
 }
 
 {   // 属性
@@ -45,6 +46,7 @@
             return Array;
         }
     }
+    let end
 }
 
 {   // Array.from
@@ -84,6 +86,7 @@
     let arr6 = arrayFrom(new Set([1, 2, 3]), fn, obj);
     let arr7 = arrayFrom(new Map([[2, 3], [5, 6]]), fn, obj);
     let arr8 = arrayFrom({1: 6, 4: 9, length: 5}, fn, obj);
+    let end
 }
 {   // Array.isArray
     // Array.isArray(obj)
@@ -102,6 +105,7 @@
     function isArray(arg) {
         return Object.prototype.toString.call(arg) === '[object Array]';
     }
+    let end
 }
 {   // Array.of
     // Array.of(element0[, element1[, ...[, elementN]]])
@@ -111,11 +115,13 @@
     function arrayOf() {
         return Array.prototype.slice.call(arguments);
     }
+    let end
 }
 {   // Array.concat 将数组展开一层深度结合
     // var new_array = old_array.concat(value1[, value2[, ...[, valueN]]])  将数组和/或值连接成新数组。
     let alpha = ['a', 'b', 'c'];
     let alphaNumeric = alpha.concat(1, [2, 3]);     // ['a', 'b', 'c', 1, 2, 3]
+    let end
 }
 {   // Array.prototype.copyWithin  根据start、end从原数组中copy一个片段，然后以target为起始点粘贴这个片段
     /* arr.copyWithin(target[, start[, end]])  将数组和/或值连接成新数组。
@@ -189,6 +195,7 @@
     copyWithin.call([1, 2, 3, 4, 5], 1, 2, 8);    // [1, 3, 4, 5, 5]
     copyWithin.call([1, 2, 3, 4, 5], 1, 2, -8);   // [1, 2, 3, 4, 5]
 
+    let end
 }
 {   // Array.prototype.entries  获取数组迭代器
     // arr.entries() 返回一个数组迭代器对象
@@ -236,6 +243,7 @@
         // console.log(result.value);
         result = iterator4.next();
     }
+    let end
 }
 {   // Array.prototype.every    是否所有元素都符合条件（callback都返回true），返回false则循环结束。
     /* arr.every(callback[, thisArg])
@@ -283,6 +291,7 @@
         // console.log(k, v);
         return true;
     });
+    let end
 }
 {   // Array.prototype.fill  用一个固定值填充一个数组中从起始索引到终止索引内的全部元素。不包括终止索引
     /* arr.fill(value[, start[, end]])
@@ -326,6 +335,7 @@
     arr2 = fill.call(Array(3), {});   // [{}, {}, {}];
     arr2[0].hi = "hi";              // [{ hi: "hi" }, { hi: "hi" }, { hi: "hi" }]
 
+    let end
 }
 
 {   // Array.prototype.filter   返回通过函数测试的所有元素
@@ -344,6 +354,7 @@
         return v > 3;
     });
 
+    let end
 }
 {   // Array.prototype.find     遍历查找元素
     /* arr.find(callback[, thisArg])
@@ -363,6 +374,7 @@
         return v.id === 3;
     });
 
+    let end
 }
 
 {   // Array.prototype.findIndex    遍历查找索引
@@ -383,6 +395,7 @@
         return v.id === 3;
     });
 
+    let end
 }
 {   // Array.prototype.flat  展开数组，深度可指定
     /* var newArray = arr.flat(depth)
@@ -421,6 +434,7 @@
     let arr2 = [1, 2, , 4, 5];
     arr2.flat();                    // [1, 2, 4, 5]     flat() 方法会移除数组中的空项
 
+    let end
 }
 {   // Array.prototype.flatMap      // 遍历数组，对每个返回值进行concat后返回（即展开一层深度）
     /* var new_array = arr.flatMap(function callback(currentValue[, index[, array]]) {
@@ -449,6 +463,7 @@
     let arr2 = ["今天天气不错", " ", "早上好"]
     arr2.map(s => s.split(""));     // [["今", "天", "天", "气", "不", "错"],[""],["早", "上", "好"]]
     arr2.flatMap(s => s.split("")); // ["今", "天", "天", "气", "不", "错", "", "早", "上", "好"]
+    let end
 }
 {   // Array.prototype.forEach      遍历数组
     /* arr.forEach(callback[, thisArg]);
@@ -468,6 +483,7 @@
             words.shift();
         }
     });
+    let end
 }
 {   // Array.prototype.includes     返回Boolean， 判断数组中是否包含某元素
     /* arr.includes(valueToFind[, fromIndex])
@@ -485,6 +501,7 @@
     [].includes.call(obj1, 6);   // true   可以查找对象
     [].includes.call(obj1, 1);   // false  不能查找对象属性
 
+    let end
 }
 {   // Array.prototype.indexOf     返回index或-1
     /* arr.indexOf(searchElement[, fromIndex = 0])
@@ -494,6 +511,7 @@
     arr1.indexOf(2);        // 1
     arr1.indexOf(4);        // -1,  使用===判断
 
+    let end
 }
 {   // Array.prototype.join     将数组连接为字符串
     /* arr.join([separator])
@@ -502,6 +520,7 @@
     let arr1 = [1, 2, 3, undefined, null, NaN, [9, 8, [4, 5]]];
     arr1.join();        // 1,2,3,,,NaN,9,8,4,5  undefined和null会被转换为空字符串
     [].join.call({a: 1, b: 2, 3: 4, 5: 6, length: 8});  // ,,,4,,6,, 可以处理类数组对象，不过只连接数字属性
+    let end
 }
 {   // Array.prototype.keys 返回一个索引的迭代器
     /* arr.keys()
@@ -509,6 +528,7 @@
     let arr1 = [1, 2, 3, 4, 5];
     let iterator = arr1.keys(); // Array Iterator
     [...iterator];              // [1, 2, 3, 4, 5, 6]
+    let end
 }
 {   // Array.prototype.lastIndexOf  数组中最后一个元素的索引，如未找到返回-1
     /* arr.lastIndexOf(searchElement[, fromIndex ])
@@ -518,6 +538,7 @@
     arr1.lastIndexOf(2);        // 1
     arr1.lastIndexOf(4);        // -1,  使用===判断
 
+    let end
 }
 {   // Array.prototype.map  收集遍历后函数处理的返回值
     /*
@@ -530,6 +551,7 @@
      */
     let arr1 = [1, 2, 3, 4, 5];
     ["1", "2", "3"].map(parseInt);      // [1, NaN, NaN]   即[parseInt(1, 0), parseInt(2, 1),parseInt(3, 2)]
+    let end
 }
 {   // Array.prototype.pop  从数组中删除的元素(当数组为空时返回undefined)。
     /* arr.pop()
@@ -542,6 +564,7 @@
 
     let obj2 = {length: 2, 1: 5, 2: 8};
     let item2 = [].pop.call(obj2);      // item1的值为5, obj1的length属性被置为1
+    let end
 }
 {   // Array.prototype.push     返回新的length属性值
     /* arr.push(element1, ..., elementN)
@@ -568,6 +591,7 @@
     obj3.addElem('b');  // {0: a, 1: b, length: 2, addElem}
     obj3.addElem('c');  // {0: a, 1: b, 2: c, length: 3, addElem}
 
+    let end
 }
 {   // Array.prototype.reduce   遍历数组得到一个累加值
     /* arr.reduce(callback[, initialValue])
@@ -626,6 +650,7 @@
     let a = reduce.call([0, 1, 2, 3, 4], function (accumulator, currentValue, currentIndex, array) {
         return accumulator + currentValue;
     });
+    let end
 }
 {   // Array.prototype.reduceRight   reduce从右到左执行
     /* arr.reduceRight(callback[, initialValue])
@@ -653,6 +678,7 @@
     arr1.slice(1, 3);   // [2, 3]
 
     let arr2 = [].slice.call({length: 5, 3: 4, 5: 8});      // [,,,4,,] 将类数组转换为数组
+    let end
 }
 {   // Array.prototype.some     遍历数组找到符合条件的值（返回true）就停止遍历，函数返回Boolean
     /* arr.some(callback(element[, index[, array]])[, thisArg])
@@ -667,6 +693,7 @@
     arr1.some((v) => {        // true
         return v > 3;       // 不会再遍历4,5
     });
+    let end
 }
 {   // Array.prototype.sort  对数组排序，返回排序后的数组，且会修改原数组
     /* arr.sort([compareFunction])
@@ -679,6 +706,7 @@
      */
     let arr1 = [1, 2, 5, 23, 46, 12];
     arr1.sort();        // [1, 12, 2, 23, 46, 5]
+    let end
 }
 {   // Array.prototype.splice
     /* array.splice(start[, deleteCount[, item1[, item2[, ...]]]])
@@ -689,6 +717,7 @@
     let arr1 = [1, 2, 3, 4, 5];
     arr1.splice();      // [1, 2, 3, 4, 5]
     arr1.splice(0);     // []
+    let end
 }
 {   // Array.prototype.toLocaleString  表示数组元素的字符串。
     /* arr.toLocaleString([locales[,options]]); 返回一个字符串表示数组中的元素。数组中的元素将使用各自的 toLocaleString 方法转成字符串，这些字符串将使用一个特定语言环境的字符串（例如一个逗号 ","）隔开。
@@ -698,6 +727,7 @@
     let arr1 = [1, 2, 3, 4, 5];
     let array1 = [1, 'a', new Date('21 Dec 1997 14:12:00 UTC')];
     let localeString = array1.toLocaleString('en', {timeZone: "UTC"});      // 1,a,1997-12-21 22:12:00
+    let end
 }
 {   // Array.prototype.toString     数组转字符串函数
     /* arr.toString()       返回一个表示指定的数组及其元素的字符串。
@@ -706,6 +736,7 @@
      */
     let arr1 = [1, 2, 3, 4, 5, {a: 3}];
     arr1.toString();        // 1,2,3,4,5,[object Object]
+    let end
 }
 {   // Array.prototype.unshift      会在调用它的类数组对象的开始位置插入给定的参数
     /* arr.unshift(element1, ..., elementN)
@@ -720,4 +751,5 @@
     for (let v of iterator1) {
         // console.log(v)
     }
+    let end
 }
