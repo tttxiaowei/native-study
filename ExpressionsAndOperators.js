@@ -24,12 +24,14 @@
 
     // String + String -> 字符串连接
     "foo" + "bar" // "foobar"
+    let end
 }
 
 {   // 减法 (-)   减法运算符使两个操作数相减，结果是它们的差值。
     5 - 3 // 2
     3 - 5 // -2
     "foo" - 3 // NaN
+    let end
 }
 
 {   // 除法 (/)   除法运算符的结果是操作数的商 ，左操作数是被除数，右操作数是除数。
@@ -38,6 +40,7 @@
     2.0 / 0    // 在 JavaScript 中返回 Infinity
     2.0 / 0.0  // 同样返回 Infinity
     2.0 / -0.0 // 在 JavaScript 中返回 -Infinity
+    let end
 }
 
 {   // 乘法 (*)   乘法运算符的结果是操作数的乘积。
@@ -46,6 +49,7 @@
     Infinity * 0 // NaN
     Infinity * Infinity // Infinity
     "foo" * 2 // NaN
+    let end
 }
 
 {   // 求余 (%)   求余运算符返回第一个操作数对第二个操作数的模，即 var1 对 var2 取模
@@ -56,6 +60,7 @@
     2 % 3; // 2
     -4 % 2 // -0
     5.5 % 2 // 1.5
+    let end
 }
 
 {   // 幂 (**)   幂运算符返回第一个操作数做底数，第二个操作数做指数的乘方,幂运算符是右结合的。a ** b ** c 等同于 a ** (b ** c)。
@@ -69,6 +74,7 @@
     2 ** 3 ** 2 // 512
     2 ** (3 ** 2); // 512
     (2 ** 3) ** 2 // 64
+    let end
 }
 
 {   // 递增 (++)  递增运算符为其操作数增加1，返回一个数值。
@@ -83,6 +89,7 @@
     let a = 2;
     b = ++a;
     // a = 3, b = 3
+    let end
 }
 
 {   // 递减 (--)  递减运算符将其操作数减去1，并返回一个数值。
@@ -95,11 +102,13 @@
     // 前置
     let a = 2;
     b = --a; // a = 1, b = 1
+    let end
 }
 
 {   // 一元负号 (-) 一元负号运算符位于操作数前面，并转换操作数的符号。
     let x = 3;
     y = -x; // y = -3, x = 3
+    let end
 }
 
 {   // 一元正号 (+) 一元正号运算符位于其操作数前面，计算其操作数的数值，如果操作数不是一个数值，会尝试将其转换成一个数值。
@@ -118,12 +127,14 @@
     +function (val) {
         return val;
     } //NaN
+    let end
 }
 
 {   // 赋值(=)    简单的赋值运算符，把一个值赋给一个变量。为了把一个值赋给多个变量，可以以链式使用赋值运算符
 
     let x = y = z = 25  // // x, y and z are all 25
     let a = 21
+    let end
 }
 
 {   // 加赋值(+=)  加赋值运算符把一个右值与一个变量相加，然后把相加的结果赋给该变量。两个操作数的类型决定了加赋值运算符的行为。算术相加或字符串连接都有可能。
@@ -137,28 +148,31 @@
     baz += 1 // 2
 
     // Boolean + Boolean -> addition
-    baz += false // 1
+    baz += false // 2
 
     // Number + String -> concatenation
-    bar += 'foo' // "5foo"
+    bar += 'foo' // "7foo"
 
     // String + Boolean -> concatenation
     foo += false // "foofalse"
 
     // String + String -> concatenation
-    foo += 'bar' // "foobar"
+    foo += 'bar' // "foofalsebar"
+    let end
 }
 
 {   // 减赋值(-=)  减赋值运算符使一个变量减去右值，然后把结果赋给该变量。
     let bar = 5
     bar -= 2     // 3
     bar -= "foo" // NaN
+    let end
 }
 
 {   // 乘赋值(*=)  乘赋值运算符使一个变量乘以右值，然后把相成的结果赋给该变量
     let bar = 5
     bar *= 2     // 10
     bar *= 'foo' // NaN
+    let end
 }
 
 {   // 除赋值(/=)  除赋值运算符使一个变量除以右值，然后把结果赋给该变量
@@ -166,6 +180,7 @@
     bar /= 2     // 2.5
     bar /= "foo" // NaN
     bar /= 0     // Infinity
+    let end
 }
 
 {   // 模赋值(%=)  模赋值运算符使一个变量除以右值，然后把余数赋给该变量
@@ -174,6 +189,7 @@
     bar %= 2     // 1
     bar %= 'foo' // NaN
     bar %= 0     // NaN
+    let end
 }
 
 {   // 指数赋值(**=)  指数赋值运算符使一个变量为底数、以右值为指数的指数运算（乘方）结果赋给该变量
@@ -181,11 +197,13 @@
 
     bar **= 2     // 25
     bar **= 'foo' // NaN
+    let end
 }
 
 {   // 左移赋值(<<=)  左移赋值运算符使变量向左移动指定位数的比特位，然后把结果赋给该变量
     let bar = 5; //  (00000000000000000000000000000101)
     bar <<= 2; // 20 (00000000000000000000000000010100)
+    let end
 }
 
 {   // 右移赋值(>>=)  右移赋值运算符使变量向右移指定位数的比特位，然后把结果赋给该变量
@@ -194,6 +212,7 @@
 
     bar = -5; //    (-00000000000000000000000000000101)
     bar >>= 2;  // -2 (-00000000000000000000000000000010)
+    let end
 }
 
 {   // 无符号右移赋值(>>>=)  无符号右移赋值运算符向右移动指定数量的比特位，然后把结果赋给变量。
@@ -202,6 +221,7 @@
 
     bar = -5; // (-00000000000000000000000000000101)
     bar >>>= 2; // 1073741822 (00111111111111111111111111111110)
+    let end
 }
 
 {   // 按位与赋值(&=)  按位与赋值运算符使用两个操作值的二进制表示，执行按位与运算，并把结果赋给变量
@@ -209,6 +229,7 @@
     // 5:     00000000000000000000000000000101
     // 2:     00000000000000000000000000000010
     bar &= 2; // 0
+    let end
 }
 
 {   // 按位异或赋值(^=)  按位异或赋值运算符使用两个操作值的二进制表示，执行二进制异或运算，并把结果赋给变量
@@ -218,6 +239,7 @@
     // 2: 00000000000000000000000000000010
     // -----------------------------------
     // 7: 00000000000000000000000000000111
+    let end
 }
 
 {   // 按位或赋值(|=)  按位或赋值运算符使用两个操作值的二进制表示，执行按位或运算，并把结果赋给变量
@@ -227,6 +249,7 @@
 // 2: 00000000000000000000000000000010
 // -----------------------------------
 // 7: 00000000000000000000000000000111
+    let end
 }
 
 {   // 带有赋值运算符的左值, 当一个赋值运算符的左值包含有一个赋值运算符时，左值只会被求值一次
@@ -234,6 +257,7 @@
     i = 0
     a[i++] += 5         // i 执行一次求值     a[i++] += 5 不等同于 a[i++] = a[i++] + 5
     a[i++] = a[i++] + 5 // i 执行两次求值     a = [6, 8, 3, 4]    左值最后求值
+    let end
 }
 
 {   // 按位操作符    将其操作数（operands）当作32位的比特序列（由0和1组成），而不是十进制、十六进制或八进制数值
@@ -357,6 +381,7 @@
     x = (x++, x);   // x=2
 
     x = (2, 3);     // x=3
+    let end
 }
 
 {   // 相等(==)
@@ -376,11 +401,13 @@
 {   // 一/严格相等 (===)    一致运算符不会进行类型转换，仅当操作数严格相等时返回true
     3 === 3   // true
     3 === '3' // false
+    let end
 }
 
 {   // 不一致/严格不相等 (!==)
     3 !== '3' // true
     4 !== 3   // true
+    let end
 }
 
 {   // 大于运算符 (>)    大于运算符仅当左操作数大于右操作数时返回true
@@ -428,52 +455,36 @@
                 : 4
 
     // 这二者是一样的效果
+    let end
 }
 
 
 {   // 解构赋值
 
-    // 解构数组, 只要某种数据结构具有 Iterator 接口，都可以采用数组形式的解构赋值。否则将会报错。
+    // 解构数组
     {   // 变量声明并赋值时的解构
         let foo = ["one", "two", "three"];
         let [one, two, three] = foo;
+        let end
     }
 
     {   // 变量先声明后赋值时的解构
         let a, b;
         [a, b] = [1, 2];
+        let end
     }
 
     {   // 默认值
         let a, b;
         [a = 5, b = 7] = [1];
-    }
-
-    {   // ES6 内部使用严格相等运算符（===），判断一个位置是否有值。所以，只有当一个数组成员严格等于undefined，默认值才会生效。
-        let [a = 1] = [null]; // a为null
         let end
-    }
-
-    {   // 如果默认值是一个表达式，那么这个表达式是惰性求值的，即只有在用到的时候，才会求值。
-        let f = function() {
-            console.log('aaa');
-        }
-        let [a = f()] = [1]; // 不执行f
-        let [b = f()] = []; // 执行f
-        let end
-    }
-
-    { // 默认值可以引用解构赋值的其他变量，但该变量必须已经声明。
-        let [x = 1, y = x] = [];     // x=1; y=1
-        let [x = 1, y = x] = [2];    // x=2; y=2
-        let [x = 1, y = x] = [1, 2]; // x=1; y=2
-        let [x = y, y = 1] = [];     // ReferenceError: y is not defined
     }
 
     {   // 交换变量
         let a = 1;
         let b = 3;
         [a, b] = [b, a];
+        let end
     }
 
     {   // 解析一个从函数返回的数组
@@ -483,6 +494,7 @@
 
         let a, b;
         [a, b] = f();
+        let end
     }
 
     {   // 忽略某些返回值
@@ -491,12 +503,12 @@
         }
 
         let [a, , b] = f();
+        let end
     }
 
     {   // 将剩余数组赋值给一个变量
         let [a, ...b] = [1, 2, 3];  // 如果剩余元素右侧有逗号，会抛出 SyntaxError，因为剩余元素必须是数组的最后一个元素。
-        console.log(a); // 1
-        console.log(b); // [2, 3]
+        let end
     }
 
 
@@ -504,28 +516,34 @@
     {   // 基本赋值
         let o = {p: 42, q: true};
         let {p, q} = o;
+        let end
     }
 
     {   // 无声明赋值
         let a, b;
         ({a, b} = {a: 1, b: 2});    // 赋值语句周围的圆括号 ( ... ) 在使用对象字面量无声明解构赋值时是必须的。{a, b} = {a: 1, b: 2} 不是有效的独立语法，因为左边的 {a, b} 被认为是一个块而不是对象字面量。
+        let end
     }
 
     {   // 给新的变量名赋值
         let o = {p: 42, q: true};
         let {p: foo, q: bar} = o;
+        let end
     }
 
     {   // 默认值
         let {a = 10, b = 5} = {a: 3};
+        let end
     }
 
     {   // 给新的变量命名并提供默认值
-        var {a: aa = 10, b: bb = 5} = {a: 3};
+        let {a: aa = 10, b: bb = 5} = {a: 3};
+        let end
     }
 
     {   // 函数参数默认值
         let {a = 10, b = 5} = {a: 3};
+        let end
     }
 
     {   // 解构嵌套对象和数组
@@ -551,6 +569,7 @@
                 },
             ],
         } = metadata;
+        let end
     }
 
     {   // For of 迭代和解构
@@ -578,6 +597,7 @@
         for (let {name: n, family: {father: f}} of people) {
             console.log('Name: ' + n + ', Father: ' + f);
         }
+        let end
     }
 
     {   // 从作为函数实参的对象中提取数据
@@ -595,6 +615,7 @@
         };
 
         whois(user); // "jdoe is John"
+        let end
     }
 
     {   // 对象属性计算名和解构
@@ -602,6 +623,7 @@
         let {[key]: foo} = {z: "bar"};
 
         console.log(foo); // "bar"
+        let end
     }
 
     {   // 对象解构中的 Rest
@@ -609,42 +631,21 @@
         a; // 10
         b; // 20
         rest; // { c: 30, d: 40 }
+        let end
     }
 
     {   // 解构对象时会查找原型链（如果属性不在对象自身，将从原型链中查找
         // 声明对象 和 自身 self 属性
-        var obj = {self: '123'};
+        let obj = {self: '123'};
         // 在原型链中定义一个属性 prot
         obj.__proto__.prot = '456';
         // test
         const {self, prot} = obj;
         // self "123"
         // prot "456"（访问到了原型链）
+        let end
     }
-
-    {   // 由于数组本质是特殊的对象，因此可以对数组进行对象属性的解构。
-        let arr = [1, 2, 3];
-        let {0 : first, [arr.length - 1] : last} = arr;
-        first // 1
-        last // 3
-    }
-
-    { // 字符串也可以解构赋值。这是因为此时，字符串被转换成了一个类似数组的对象
-        const [a, b, c, d, e] = 'hello';
-        a // "h"
-        b // "e"
-        c // "l"
-        d // "l"
-        e // "o"
-    }
-
-    { // 解构赋值的规则是，只要等号右边的值不是对象或数组，就先将其转为对象。由于undefined和null无法转为对象，所以对它们进行解构赋值，都会报错。
-        let {toString: s} = 123;
-        s === Number.prototype.toString // true
-
-        let {toString: s} = true;
-        s === Boolean.prototype.toString // true
-    }
+    let end
 }
 
 
@@ -765,9 +766,390 @@
         77.0.toExponential();
 // 因为 77. === 77.0，没有歧义（no ambiguity）
     }
+    let end
 }
 
 
-{
+{   // 属性名称必须是字符串或符号 Symbol。这意味着非字符串对象不能用来作为一个对象属性的键。任何非字符串对象，包括 Number，都会通过 toString 方法，被转换成一个字符串。
+    let object1 = {};
+    object1['1'] = 'value';
+    console.log(object1[1]);     // value   1被转为'1'
 
+    let foo = {unique_prop: 1}, 
+        bar = {unique_prop: 2},
+        object2 = {};
+    object2[foo] = 'value';      // foo被转化为字符串"[object Object]"
+    console.log(object2[bar]);   // value    因为bar也被转化为"[object Object]"
+    let end
+}
+
+
+{   // 展开语法(Spread syntax), 可以在函数调用/数组构造时, 将数组表达式或者string在语法层面展开；
+    // 还可以在构造字面量对象时, 将对象表达式按key-value的方式展开
+    let o1 = {a: 1}
+    let a1 = [4, 543, 3, 44]
+    let o2 = {...o1}            // 浅拷贝，相当于Object.assign，但是Object.assign会触发 setters，而展开语法则不会
+    let a2 = [...a1]        
+    
+    let f1 = function (...rest) {        
+        console.log(rest)
+    }
+    f1(...a1) 
+    // f1(...o1)        // TypeError: Found non-callable @@iterator 在数组或函数参数中使用展开语法时, 该语法只能用于 可迭代对象
+    let end
+}
+
+{   // async function 关键字用来定义异步函数
+    // await  操作符用于等待一个Promise 对象。它只能在异步函数 async function 中使用。
+    /**
+        await 表达式会暂停当前 async function 的执行，等待 Promise 处理完成。若 Promise 正常处理(fulfilled)，其回调的resolve函数参数作为 await 表达式的值，继续执行 async function。
+        若 Promise 处理异常(rejected)，await 表达式会把 Promise 的异常原因抛出。
+        另外，如果 await 操作符后的表达式的值不是一个 Promise，则返回该值本身。
+     */
+    let p1 = function() {
+        return new Promise(function(resolve, reject) {
+            setTimeout(()=>{
+                reject(111111)
+            }, 200)
+        }).then(res => {
+            return 22222
+        }).catch(e => {         // 如果没有catch，错误会在await处抛出
+            return 44444
+        })
+    }
+
+    let f1 = async function() {
+        let a1 = await p1()     // 如果p1 resolve，则a1等于22222； 如果p1 reject,则a1等于44444
+        console.log(a1)
+    }
+    f1()
+    let end
+}
+
+{   
+    class C1 {          // class声明的类也是局部作用域
+        a  = 1
+        constructor() {
+        }
+    }     
+    let C2 = class {
+    }
+
+    function F1() {
+    }
+    F1.prototype.a = 1
+
+    let o1 = new C1()
+    let o2 = new F1()
+    let end
+}
+
+{   /**
+     delete操作符
+        1. 与通常的看法不同，delete操作符与直接释放内存无关。内存管理 通过断开引用来间接完成的
+        2. 对于所有情况都是true，除非属性是一个自己不可配置的属性，在这种情况下，非严格模式返回 false, 在严格模式下，会抛出Global_objects/SyntaxError
+        3. 如果你试图删除的属性不存在，那么delete将不会起任何作用，但仍会返回true
+        4. delete操作只会在自身的属性上起作用,不会删除原型链上的属性
+        5. 任何使用 var 声明的属性不能从全局作用域或函数的作用域中删除，使用了 var，它会标记为不可配置。同样 let 或 const 也是不可配置的。
+        6. 任何用let或const声明的属性不能够从它被声明的作用域中删除
+        7. 不能删除任何在全局作用域中的函数（无论这个函数是来自于函数声明或函数表达式）
+        8. 不可设置的(Non-configurable)属性不能被移除。这意味着像Math, Array, Object内置对象的属性以及使用Object.defineProperty()方法设置为不可设置的属性不能被删除。
+    */
+    (function(){
+        var v1 = 1111
+        let v2 = 222
+        const v3 = 333
+        v4 = 888
+        function f1() {}
+        let d1 = delete v1
+        let d2 = delete v2
+        let d3 = delete v3      // d1 d2 d3都是false，删除失败
+        let d4 = delete v4      // d4为true, 删除成功，因为没有用var let const
+    })()
+}
+
+{   /**
+    in 操作符   prop in object
+        1. prop  一个字符串类型或者 symbol 类型的属性名或者数组索引（非symbol类型将会强制转为字符串）
+        2. objectName 检查它（或其原型链）是否包含具有指定名称的属性的对象
+        3. in右操作数必须是一个对象值，否则会报错
+        4. 对象中，对delete的属性使用in返回false，对赋值为undefined的属性使用in返回true
+    */
+
+    let a = 'aaa'
+    let o1 = {aaa: 777}
+    let r1 = a in o1
+    // a in 'sadasd'       // TypeError: Cannot use 'in' operator to search for 'aaa' in sadasd
+
+    let end = 3
+}
+
+{   // instanceof 运算符    object instanceof constructor
+    // instanceof 运算符用来检测 constructor.prototype 是否存在于参数 object 的原型链上。
+    /**
+     * 在浏览器中，我们的脚本可能需要在多个窗口之间进行交互。多个窗口意味着多个全局环境，不同的全局环境拥有不同的全局对象，从而拥有不同的内置类型构造函数。这可能会引发一些问题。
+     * 比如，表达式[] instanceof window.frames[0].Array 会返回 false，因为 Array.prototype !== window.frames[0].Array.prototype，并且数组从前者继承。
+     * 
+     *  */  
+     
+}
+
+
+{   // new 操作符
+    /** 
+     *  new 运算符创建一个用户定义的对象类型的实例或具有构造函数的内置对象的实例。new 关键字会进行如下的操作：
+     *  1. 创建一个空的简单JavaScript对象（即{}）；
+     *  2. 链接该对象（即设置该对象的构造函数）到另一个对象 ；
+     *  3. 将步骤1新创建的对象作为this的上下文 ；
+     *  4. 如果该函数没有返回对象，则返回this。
+     * 
+     * 
+     * 当代码 new Foo(...) 执行时，会发生以下事情：
+     * 1. 一个继承自 Foo.prototype 的新对象被创建。
+     * 2. 使用指定的参数调用构造函数 Foo，并将 this 绑定到新创建的对象。new Foo 等同于 new Foo()，也就是没有指定参数列表，Foo 不带任何参数调用的情况。
+     * 3. 由构造函数返回的对象就是 new 表达式的结果。如果构造函数没有显式返回一个对象，则使用步骤1创建的对象。（一般情况下，构造函数不返回值，但是用户可以选择主动返回对象，来覆盖正常的对象创建步骤）
+     */
+
+    let f1 = function() {
+        this.a = 111
+    }
+    let o1 = new f1()           // 一般的构造函数不返回值，自动返回执行构造函数的this
+
+
+
+    let f2 = function(a) {
+        return {
+            b: 2
+        }
+    }
+    let o2 = new f2(444, 55)    // 构造函数返回对象，o2接收是这个对象，而不是运行构造函数的this
+
+
+
+    let f3= function(a) {
+        return a 
+    }
+    let o3 = new f3({           // 构造函数返回对象，o3是传给构造函数的对象
+        c: 2343
+    })
+    let o4 = new f3()           // 构造函数返回不是对象，o4是指向f3.prototype的新对象
+
+
+    
+    let f4 = f1.bind({  
+        aaa: 3444
+    })
+    let o5 = new f4()           // 指定了this的构造函数在new时，this被新建的对象替代
+    let end 
+}
+
+{   // new.target
+    /**
+     * new.target语法由一个关键字"new"，一个点，和一个属性名"target"组成。通常"new."的作用是提供属性访问的上下文，但这里"new."其实不是一个真正的对象。
+     * 不过在构造方法调用中，new.target指向被new调用的构造函数，所以"new."成为了一个虚拟上下文。
+     * new.target属性适用于所有函数访问的元属性。在arrow functions 中，new.target 指向最近的外层函数的new.target
+     */
+    let a1 = new.target     // undefined
+    
+    let f1 = function () {
+        let o = {}
+        if (!new.target) {
+            o.a = 111
+        } else {
+            o.a = 222
+        }
+        return o
+    }
+    let o1 = f1();      // o1.a = 111
+    let o2 = new f1();  // o2.a = 222
+
+
+    // 在类的构造方法中，new.target指向直接被new执行的构造函数。并且当一个父类构造方法在子类构造方法中被调用时，情况与之相同。
+    class A {
+        constructor() {
+            let name = new.target.name
+        }
+    }
+    
+    class B extends A { constructor() { super(); } }
+      
+    let end 
+}
+{   // super关键字
+    /**
+     * super关键字用于访问和调用一个对象的父对象上的函数
+     * super.prop和super[expr]表达式在类和对象字面量任何方法定义中都是有效的。
+     */
+    class c1 {
+        constructor() {
+            this.a = 111
+        }
+
+        b() {
+            return this.a
+        }
+    }
+
+    class c2 extends c1 {
+        constructor () {
+            super()     // 如果子类构造函数不调用super会报错，在调用super之前，this为undefined
+        }
+        
+        superTest() {
+            let a = super.a    // undefined 无法引用父对象的属性
+            super.b()               // 可以调用父类的方法
+            super.a = 222           // 当父类没有a这个方法时，super相当于this
+            super.b = 333           // 父类有这个方法，但是也不能给父类方法赋值，这里super相当于this
+            super.b = function() {  // 无法修改父类方法
+            }
+            super.b()               // 父类的方法没有被覆盖
+            // delete super.as       // 不能使用super删除属性，将抛出异常ReferenceError: Unsupported reference to 'super'
+        }
+    }
+    let o1 = new c1()
+    let o2 = new c2()
+    o2.superTest()
+    let o3 = new c2()
+
+
+    let obj1 = {
+        a: 111,
+        b() {
+            return 8888
+        }
+    }
+    let obj2 = {
+        f1() {
+            let a = super.a    // undefined 无法引用父对象的属性
+            super.a = 222           // 当父类没有a这个方法时，super相当于this
+            super.b = 333           // 父类有这个方法，但是也不能给父类方法赋值，这里super相当于this
+            super.b = function() {  // 无法修改父类方法
+            }
+            return super.b()
+        }
+    }
+    Object.setPrototypeOf(obj2, obj1)
+    obj2.f1()
+
+    let end 
+}
+{   // this  当前执行代码的环境对象，在非严格模式下，总是指向一个对象，在严格模式下可以是任意值
+    /**
+     * 全局环境：无论是否在严格模式下，在全局执行环境中（在任何函数体外部）this 都指向全局对象
+     * 函数（运行内）环境：在函数内部，this的值取决于函数被调用的方式
+     * 作为对象的方法: 当函数作为对象里的方法被调用时，它们的 this 是调用该函数的对象。（getter 与 setter 中的 this指向属性所属的对象）
+     * 作为构造函数： 它的this被绑定到正在构造的新对象
+     * 作为一个DOM事件处理函数： 当函数被用作事件处理函数时，它的this指向触发事件的元素（一些浏览器在使用非addEventListener的函数动态添加监听函数时不遵守这个约定）。
+     * 作为一个内联事件处理函数： 当代码被内联on-event 处理函数调用时，它的this指向监听器所在的DOM元素：<button onclick="alert(this.tagName.toLowerCase());">Show this</button>
+     */
+
+    function f1(){
+        return this;
+    }
+    let r1 = f1()                // global, 简单调用, 严格模式下为undefined, 非严格模式为全局对象global、window
+    let r2 = f1.call({a: 1})     // {a: 1}， call、apply指定this
+    let r3 = f1.apply(2)         // Number对象，call、apply会将第一个参数转为对象
+    let r4 = f1.apply()          // global， call、apply第一个参数为null、undefined时，this和简单调用时一样
+
+    let f2 = f1.bind({a: 222})  
+    let r5 = f2()                // {a: 222}
+    let f3 = f1.bind({a: 333})  
+    let r6 = f3()                // {a: 333} 原始的函数f1可以多次bind
+    let f4 = f2.bind({a: 333})  
+    let r7 = f4()                // {a: 222} bind的返回函数不能再bind
+    let end
+}
+{   // typeof
+    /**
+     * typeof 操作符返回一个字符串，表示未经计算的操作数的类型。返回表示对象或原始值的表达式，其类型将被返回。
+     *  类型	        结果
+        Undefined	    "undefined"
+        Null	        "object" (见下文)
+        Boolean	        "boolean"
+        Number	        "number"
+        BigInt	        "bigint"
+        String	        "string"
+        Symbol (ECMAScript 2015 新增)	                 "symbol"
+        宿主对象（由 JS 环境提供）	                         取决于具体实现
+        Function 对象 (按照 ECMA-262 规范实现 [[Call]])	    "function"
+        其他任何对象	  "object"
+     */
+    let end 
+}
+{   // void
+    /**
+     * void 运算符 对给定的表达式进行求值，然后返回 undefined。
+     * 这个运算符能向期望一个表达式的值是undefined的地方插入会产生副作用的表达式。
+     * void 运算符通常只用于获取 undefined的原始值，一般使用void(0)（等同于void 0）。在上述情况中，也可以使用全局变量undefined 来代替（假定其仍是默认值）。
+     * 
+     * JavaScript URIs
+     * 当用户点击一个以 javascript: URI 时，它会执行URI中的代码，然后用返回的值替换页面内容，除非返回的值是undefined。void运算符可用于返回undefined。例如：
+        <a href="javascript:void(0);">
+        这个链接点击之后不会做任何事情，如果去掉 void()，
+        点击之后整个页面会被替换成一个字符 0。
+        </a>
+        <p> chrome中即使<a href="javascript:0;">也没变化，firefox中会变成一个字符串0 </p>
+        <a href="javascript:void(document.body.style.backgroundColor='green');">
+        点击这个链接会让页面背景变成绿色。
+        </a> 
+     
+     * 在箭头函数中避免泄漏
+     * 箭头函数标准中，允许在函数体不使用括号来直接返回值。 如果右侧调用了一个原本没有返回值的函数，其返回值改变后，则会导致非预期的副作用。 
+     * 安全起见，当函数返回值是一个不会被使用到的时候，应该使用 void 运算符，来确保返回 undefined（如下方示例），这样，当 API 改变时，并不会影响箭头函数的行为。
+     * button.onclick = () => void doSomething();
+     */
+
+    let end 
+}
+{   // yield
+    /**
+     * yield 关键字用来暂停和恢复一个生成器函数（(function* 或遗留的生成器函数）。
+     * [rv] = yield [expression];
+     * expression: 定义通过迭代器协议从生成器函数返回的值。如果省略，则返回undefined。
+     * rv: 返回传递给生成器的next()方法的可选值，以恢复其执行。
+     * 
+     * yield关键字使生成器函数执行暂停，yield关键字后面的表达式的值返回给生成器的调用者。它可以被认为是一个基于生成器的版本的return关键字。
+     * yield关键字实际返回一个IteratorResult对象，它有两个属性，value和done。value属性是对yield表达式求值的结果，而done是false，表示生成器函数尚未完全完成
+     * 如果将参数传递给生成器的next()方法，则该值将成为生成器当前yield操作返回的值。
+     * 
+     * 一旦遇到 yield 表达式，生成器的代码将被暂停运行，直到生成器的 next() 方法被调用。每次调用生成器的next()方法时，生成器都会恢复执行，直到达到以下某个值：
+     * 1. yield，导致生成器再次暂停并返回生成器的新值。 下一次调用next()时，在yield之后紧接着的语句继续执行。
+     * 2. throw用于从生成器中抛出异常。这让生成器完全停止执行，并在调用者中继续执行，正如通常情况下抛出异常一样。
+     * 3. 到达生成器函数的结尾；在这种情况下，生成器的执行结束，并且IteratorResult给调用者返回undefined并且done为true。
+     * 4. 到达return 语句。在这种情况下，生成器的执行结束，并将IteratorResult返回给调用者，其值是由return语句指定的，并且done 为true
+     */
+
+    let end 
+}
+{   // yield*
+    /**
+     *  yield* 表达式用于委托给另一个generator 或可迭代对象。
+     * yield* [[expression]];
+     * expression: 返回一个可迭代对象的表达式。
+     * 
+     * yield* 表达式迭代操作数，并产生它返回的每个值。
+     * yield* 表达式本身的值是当迭代器关闭时返回的值（即done为true时）
+     */
+
+     // 以下代码中，g1() yield 出去的每个值都会在 g2() 的 next() 方法中返回，就像那些 yield 语句是写在 g2() 里一样。
+     let g1 = function* () {
+        yield 2;
+        yield 3;
+        yield 4;
+      }
+      
+      let g2 = function* () {
+        yield 1;
+        yield* g1();
+        yield 5;
+      }
+      
+      let iterator = g2();
+      console.log(iterator.next()); // { value: 1, done: false }
+      console.log(iterator.next()); // { value: 2, done: false }
+      console.log(iterator.next()); // { value: 3, done: false }
+      console.log(iterator.next()); // { value: 4, done: false }
+      console.log(iterator.next()); // { value: 5, done: false }
+      console.log(iterator.next()); // { value: undefined, done: true }
+    let end 
 }

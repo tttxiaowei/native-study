@@ -19,7 +19,7 @@
         // console.log(arr[i], new Boolean(arr[i]), Boolean(new Boolean(arr[i])));     // new Boolean得到一个值为false的Boolean对象
     }
     for (let i = 0; i < arr.length; i++) {
-        // console.log(arr[i], Boolean(arr[i]));   // Boolean函数直接得到原始值
+        console.log(arr[i], Boolean(arr[i]));   // Boolean函数直接得到原始值
     }
     let end
 }
