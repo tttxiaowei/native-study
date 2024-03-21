@@ -1,0 +1,64 @@
+<!--
+ * @Author: xiaowei
+ * @Date: 2020-05-13 09:30:08
+ * @LastEditors: xiaowei
+ * @LastEditTime: 2020-05-14 14:23:22
+ * @Description: canvas图片
+ -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div style="display: flex;">
+        <div>
+            <canvas id="textCanvas" width="300px" height="300px"></canvas>
+            <div>绘制图片</div>
+        </div>
+    </div>
+</body>
+<script>
+    {
+        /**
+         * canvas更有意思的一项特性就是图像操作能力。可以用于动态的图像合成或者作为图形的背景，以及游戏界面（Sprites）等等。浏览器支持的任意格式的外部图片都可以使用，比如PNG、GIF或者JPEG。 你甚至可以将同一个页面中其他canvas元素生成的图片作为图片源。
+         * 引入图像到canvas里需要以下两步基本操作：
+         * 1. 获得一个指向HTMLImageElement的对象或者另一个canvas元素的引用作为源，也可以通过提供一个URL的方式来使用图片（参见例子）
+         * 2. 使用drawImage()函数将图片绘制到画布上
+         * 
+         * canvas的API可以使用下面这些类型中的一种作为图片的源，这些源统一由 CanvasImageSource类型来引用。：
+         * 1. HTMLImageElement 这些图片是由Image()函数构造出来的，或者任何的<img>元素
+         * 2. HTMLVideoElement 用一个HTML的 <video>元素作为你的图片源，可以从视频中抓取当前帧作为一个图像
+         * 3. HTMLCanvasElement    可以使用另一个 <canvas> 元素作为你的图片源。
+         * 4. ImageBitmap  这是一个高性能的位图，可以低延迟地绘制，它可以从上述的所有源以及其它几种源中生成。
+         * 
+         * CanvasImageSource 是一个辅助类型，描述下面类型的任何一个对象：HTMLImageElement, HTMLVideoElement, HTMLCanvasElement, CanvasRenderingContext2D, 或 ImageBitmap.
+        */
+        {   
+            /**
+             * 
+             * font = value 当前我们用来绘制文本的样式. 这个字符串使用和 CSS font 属性相同的语法. 默认的字体是 10px sans-serif。
+             * textAlign = value    文本对齐选项. 可选的值包括：start, end, left, right or center. 默认值是 start。 direction属性会对此属性产生影响。如果direction属性设置为ltr，则left和start的效果相同，right和end的效果相同；如果direction属性设置为rtl，则left和end的效果相同，right和start的效果相同。
+             * textBaseline = value 基线对齐选项. 可选的值包括：top, hanging, middle, alphabetic, ideographic, bottom。默认值是 alphabetic。
+             * direction = value    文本方向。可能的值包括：ltr, rtl, inherit。默认值是 inherit
+            */
+            let canvas = document.getElementById('textCanvas')
+            let ctx = canvas.getContext('2d')       // 获取2d渲染上下文
+            let img = new Image();   // 创建img元素
+            img.onload = function(){
+                // ctx.drawImage(img, 0, 0) // drawImage(image, x, y)  其中 image 是 image 或者 canvas 对象，x 和 y 是其在目标 canvas 里的起始坐标
+                // ctx.drawImage(img, 0, 0, 150, 150)  // 这个方法多了2个参数：width 和 height，这两个参数用来控制 当向canvas画入时应该缩放的大小
+                // ctx.drawImage(img, 0, 0, 400, 400, 0, 0, 200, 200)  // drawImage(image, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight) image之后，前4个是定义图像源的切片位置和大小，后4个则是定义切片的目标显示位置和大小。
+            }
+            img.src = './1.jpg'; // 设置图片源地址
+        }
+
+    }
+</script>
+
+</html>

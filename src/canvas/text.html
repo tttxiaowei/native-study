@@ -1,0 +1,61 @@
+<!--
+ * @Author: xiaowei
+ * @Date: 2020-05-13 17:30:08
+ * @LastEditors: xiaowei
+ * @LastEditTime: 2020-05-14 10:11:36
+ * @Description: canvas画文本
+ -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div style="display: flex;">
+        <div>
+            <canvas id="textCanvas" width="300px" height="300px"></canvas>
+            <div>绘制文字</div>
+        </div>
+    </div>
+</body>
+<script>
+    {
+        /**
+         * canvas 提供了两种方法来渲染文本: 
+         * fillText(text, x, y [, maxWidth])    在指定的(x,y)位置填充指定的文本，绘制的最大宽度是可选的.
+         * strokeText(text, x, y [, maxWidth])  在指定的(x,y)位置绘制文本边框，绘制的最大宽度是可选的.
+         * 
+        */
+        {   
+            /**
+             * font = value 当前我们用来绘制文本的样式. 这个字符串使用和 CSS font 属性相同的语法. 默认的字体是 10px sans-serif。
+             * textAlign = value    文本对齐选项. 可选的值包括：start, end, left, right or center. 默认值是 start。 direction属性会对此属性产生影响。如果direction属性设置为ltr，则left和start的效果相同，right和end的效果相同；如果direction属性设置为rtl，则left和end的效果相同，right和start的效果相同。
+             * textBaseline = value 基线对齐选项. 可选的值包括：top, hanging, middle, alphabetic, ideographic, bottom。默认值是 alphabetic。
+             * direction = value    文本方向。可能的值包括：ltr, rtl, inherit。默认值是 inherit
+            */
+            let canvas = document.getElementById('textCanvas')
+            let ctx = canvas.getContext('2d')       // 获取2d渲染上下文
+            ctx.font = "24px serif"
+            ctx.fillText("Hello world", 10, 50)
+            ctx.textAlign = "left"
+            ctx.direction = "rtl"
+            ctx.strokeText("Hello world", 10, 100)
+
+            //
+            /**
+             * 预测量文本宽度    
+             * 当你需要获得更多的文本细节时，下面的方法可以给你测量文本的方法。
+             * measureText()    将返回一个 TextMetrics对象的宽度、所在像素，这些体现文本特性的属性。
+            */
+            console.log(ctx.measureText('Hello world'))
+        }
+
+    }
+</script>
+
+</html>
